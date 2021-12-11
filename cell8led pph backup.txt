@@ -1,0 +1,22 @@
+Since 3:00:
+C1: PPH 2.95
+C1: 164 pcs
+C2: PPH 2.32
+C2: 150 pcs
+C4: PPH 1.18
+C4: 52 pcs
+C5: PPH 2.12
+C5: 137 pcs
+C8: PPH 2.39
+C8: 155 pcs
+C9: PPH 2.05
+C9: 123 pcs
+C10: PPH 0.85
+C10: 59 pcs
+C11: PPH 3.18
+C13: PPH 0.9
+C13: 50 pcs
+C14: PPH 1.06
+C14: 59 pcs
+SMA: 1.9 PPH
+SMA: 1111 pcs
