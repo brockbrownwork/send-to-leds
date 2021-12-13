@@ -2,8 +2,13 @@ import tkinter as tk
 from tkinter import messagebox
 import json
 
-
-
+old_output = {}
+try:
+    with open("info.json", "r") as infile:
+        old_output = json.load(infile)
+        print(old_output)
+except FileNotFoundError:
+    print("Couldn't find info.json, moving on...")
 
 def send_button():
     output = {}
@@ -38,6 +43,10 @@ for i, location in enumerate(all_locations):
         check_buttons[location][message] = tk.IntVar()
         check_button = tk.Checkbutton(text="{0}".format(message),
                                       variable = check_buttons[location][message])
+        # check the old buttons that were checked previously
+        if location in old_output and message in old_output[location]:
+            if old_output[location][message] == 1:
+                check_button.select()
         check_button.grid(column = i, row = j + 1, sticky = 'w')
     custom_text[location] = tk.Text(width = 20, height = 3)
     custom_text[location].grid(column = i, row = j + 2)
