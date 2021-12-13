@@ -31,6 +31,8 @@ for i, location in enumerate(all_locations):
         check_button = tk.Checkbutton(text="{0}".format(message),
                                       variable = check_buttons[location][message])
         check_button.grid(column = i, row = j + 1, sticky = 'w')
+    custom_text[location] = tk.Text(width = 20, height = 3)
+    custom_text[location].grid(column = i, row = j + 2)
 
 button = tk.Button(text = 'Send', command = send_button)
 button.grid(column = 0, sticky = 'w')
