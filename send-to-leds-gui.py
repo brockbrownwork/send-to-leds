@@ -25,7 +25,7 @@ all_messages = ['PPH', 'eComm', 'Good morning', 'Good job everybody', "Custom me
 all_locations = ['All Cells', 'C4 / Cutting', 'C1 + C2', 'C8'] # these are in order of their led IDs
 
 window = tk.Tk()
-window.title("Send to LEDS")
+window.title("Send to LEDs")
 check_buttons = {}
 custom_text = {}
 
