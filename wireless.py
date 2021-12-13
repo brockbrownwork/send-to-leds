@@ -7,6 +7,7 @@ What if wifi is turned off?
 import subprocess
 from os import system
 from time import sleep, time
+from bot import click_if_exists
 
 def connect(led_sign_id, timeout = 10):
     stop_trying_time = timeout + time()
@@ -47,4 +48,11 @@ def connected():
 
 def disconnect():
     system("netsh wlan disconnect")
+
+
+
+if __name__ == "__main__":
+    for i in range(1, 7):
+        connect(i)
+
 

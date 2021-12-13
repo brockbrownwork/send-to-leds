@@ -5,6 +5,8 @@ import random
 from pyperclip import copy
 from wireless import connect
 from excel_to_text_converter import stats
+from os import system
+from bot import click_if_exists
 
 # pyautogui.displayMousePosition()
 
@@ -40,7 +42,7 @@ def minimize_all():
 
 def send(led_sign_id, message):
     minimize_all()
-    connect(led_sign_id)
+    connect(led_sign_id, timeout = 60)
     # click the head group so that it doesn't change how the screens look
     found_it = pyautogui.locateOnScreen('images\\three_screens.png')
     while not found_it:
@@ -72,7 +74,11 @@ def send(led_sign_id, message):
     time.sleep(0.1)
     copy(message)
     pyautogui.hotkey('ctrl', 'v') # paste the new text
+    time.sleep(10)
     click_send()
+    time.sleep(5)
+    # click_send() # TODO: see if this works
+    # time.sleep(5)
 
 # keyboard.is_pressed('q') # returns True is q is pressed
 # pyautogui.locateOnScreen(image_name) # returns position of the image
@@ -92,18 +98,23 @@ while True:
 # send()
 
 # send(1, "hello, this is a test")
+
+# send(2, "hello, this is a test")
+
+click_if_exists("images\\HD2018.png")
+
 testing = True
 if testing:
     for led_id in range(1, 7):
         print("trying {0}".format(led_id))
-        send(led_id, "Testing, this is led #{0}".format(led_id))
-        time.sleep(10) # dirty workaround, fix later
-input("Press enter to continue...")
+        send(led_id, "Good Morning".format(led_id))
 
 '''
 for led_id in range(1, 7):
     send(led_id, stats())
 print("Connecting back to the internet...")
 '''
-connect("SJIHQ")
-print("fin")
+sleep(30)
+system("netsh wlan connect name=SJIHQ") # connect back to the normal source
+
+pyautogui.alert("fin")
