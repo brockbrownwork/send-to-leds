@@ -27,7 +27,7 @@ def send_button():
         json.dump(output, outfile)
 
 all_messages = ['PPH', 'eComm', 'Good morning', 'Good job everybody', "Custom message"]
-all_locations = ['All Cells', 'C4 / Cutting', 'C1 + C2', 'C8'] # these are in order of their led IDs
+all_locations = ['All Cells', 'C1 + C2', 'C4 / Cutting', 'C5', 'C8', 'C9', 'C13 + C14'] # these are in order of their led IDs
 
 window = tk.Tk()
 window.title("Send to LEDs")
