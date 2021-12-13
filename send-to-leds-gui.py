@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, INSERT
 import json
 
 # TODO: fix spawn location
@@ -63,7 +63,7 @@ for i, location in enumerate(all_locations):
     custom_text[location] = tk.Text(width = 20, height = 3)
     if old_output[location]['Custom message'] not in (0, 1):
         text = old_output[location]['Custom message']
-        # custom_text[location].insert(0, text) # TODO: get the old custom text into the box
+        custom_text[location].insert(INSERT, text) # TODO: get the old custom text into the box
     custom_text[location].grid(column = i, row = j + 2)
 
 button = tk.Button(text = 'Send', command = send_button)
