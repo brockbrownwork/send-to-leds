@@ -10,7 +10,7 @@ def send_button():
         for message in all_messages:
             output[location][message] = check_buttons[location][message].get()
             if message == "Custom message" and output[location][message] == 1:
-                output[location][message] = custom_text[location].get("1.0", "end")
+                output[location][message] = custom_text[location].get("1.0", "end")[:-1]
     messagebox.showinfo("hello", "{0}".format(output))
     with open("info.json", "w") as outfile:
         json.dump(output, outfile)
