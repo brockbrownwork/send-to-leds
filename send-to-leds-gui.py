@@ -3,6 +3,8 @@ from tkinter import messagebox
 import json
 
 
+
+
 def send_button():
     output = {}
     for location in all_locations:
@@ -10,7 +12,11 @@ def send_button():
         for message in all_messages:
             output[location][message] = check_buttons[location][message].get()
             if message == "Custom message" and output[location][message] == 1:
-                output[location][message] = custom_text[location].get("1.0", "end")[:-1]
+                text_in_box = custom_text[location].get("1.0", "end")[:-1]
+                if len(text_in_box) > 0:
+                    output[location][message] = text_in_box
+                else:
+                    output[location][message] = 0
     messagebox.showinfo("hello", "{0}".format(output))
     with open("info.json", "w") as outfile:
         json.dump(output, outfile)
