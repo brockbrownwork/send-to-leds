@@ -10,7 +10,11 @@ try:
 except FileNotFoundError:
     print("Couldn't find info.json, moving on...")
 
-def send_button():
+def on_closing():
+    save()
+    window.destroy()
+
+def save():
     output = {}
     for location in all_locations:
         output[location] = {}
@@ -22,14 +26,19 @@ def send_button():
                     output[location][message] = text_in_box
                 else:
                     output[location][message] = 0
-    messagebox.showinfo("hello", "{0}".format(output))
     with open("info.json", "w") as outfile:
         json.dump(output, outfile)
+    return output
+
+def send_button():
+    output = save()
+    messagebox.showinfo("hello", "{0}".format(output))
 
 all_messages = ['PPH', 'eComm', 'Good morning', 'Good job everybody', "Custom message"]
 all_locations = ['All Cells', 'C1 + C2', 'C4 / Cutting', 'C5', 'C8', 'C9', 'C13 + C14'] # these are in order of their led IDs
 
 window = tk.Tk()
+window.protocol("WM_DELETE_WINDOW", on_closing)
 window.title("Send to LEDs")
 check_buttons = {}
 custom_text = {}
