@@ -25,7 +25,7 @@ def save():
                 if len(text_in_box) > 0:
                     output[location][message] = text_in_box
                 else:
-                    output[location][message] = 0
+                    output[location][message] = check_buttons[location][message].get()
     with open("info.json", "w") as outfile:
         json.dump(output, outfile)
     return output
