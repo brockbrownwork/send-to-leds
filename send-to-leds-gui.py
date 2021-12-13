@@ -6,7 +6,6 @@ old_output = {}
 try:
     with open("info.json", "r") as infile:
         old_output = json.load(infile)
-        print(old_output)
 except FileNotFoundError:
     print("Couldn't find info.json, moving on...")
 
@@ -24,7 +23,7 @@ def save():
             if message == "Custom message" and output[location][message] == 1:
                 text_in_box = custom_text[location].get("1.0", "end")[:-1]
                 if len(text_in_box) > 0:
-                    output[location][message] = text_in_box
+                    output[location]["text"] = text_in_box
                 else:
                     output[location][message] = check_buttons[location][message].get()
     with open("info.json", "w") as outfile:
@@ -59,8 +58,8 @@ for i, location in enumerate(all_locations):
                 check_button.select()
         check_button.grid(column = i, row = j + 1, sticky = 'w')
     custom_text[location] = tk.Text(width = 20, height = 3)
-    if old_output[location]['Custom message'] not in (0, 1):
-        text = old_output[location]['Custom message']
+    if old_output[location]['Custom message'] and 'text' in old_output[location]:
+        text = old_output[location]['text']
         custom_text[location].insert(INSERT, text) # TODO: get the old custom text into the box
     custom_text[location].grid(column = i, row = j + 2)
 
