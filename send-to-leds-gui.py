@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 import json
 
+# TODO: fix spawn location
+
 old_output = {}
 try:
     with open("info.json", "r") as infile:
@@ -15,6 +17,7 @@ def on_closing():
     window.destroy()
 
 def save():
+    # TODO: auto save text fields!
     output = {}
     for location in all_locations:
         output[location] = {}
@@ -58,6 +61,9 @@ for i, location in enumerate(all_locations):
                 check_button.select()
         check_button.grid(column = i, row = j + 1, sticky = 'w')
     custom_text[location] = tk.Text(width = 20, height = 3)
+    if old_output[location]['Custom message'] not in (0, 1):
+        text = old_output[location]['Custom message']
+        # custom_text[location].insert(0, text) # TODO: get the old custom text into the box
     custom_text[location].grid(column = i, row = j + 2)
 
 button = tk.Button(text = 'Send', command = send_button)
