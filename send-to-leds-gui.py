@@ -2,8 +2,6 @@ import tkinter as tk
 from tkinter import messagebox, INSERT
 import json
 
-# TODO: fix spawn location
-
 old_output = {}
 try:
     with open("info.json", "r") as infile:
