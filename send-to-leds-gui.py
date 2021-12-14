@@ -4,17 +4,16 @@ import json
 
 old_output = {}
 try:
-    with open("info.json", "r") as infile:
+    with open("gui-info.json", "r") as infile:
         old_output = json.load(infile)
 except FileNotFoundError:
-    print("Couldn't find info.json, moving on...")
+    print("Couldn't find gui-info.json, moving on...")
 
 def on_closing():
     save()
     window.destroy()
 
 def save():
-    # TODO: auto save text fields!!!
     output = {}
     for location in all_locations:
         output[location] = {}
@@ -26,7 +25,7 @@ def save():
                     output[location]["text"] = text_in_box
                 else:
                     output[location][message] = check_buttons[location][message].get()
-    with open("info.json", "w") as outfile:
+    with open("gui-info.json", "w") as outfile:
         json.dump(output, outfile)
     return output
 
