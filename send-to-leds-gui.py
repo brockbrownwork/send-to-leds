@@ -53,12 +53,12 @@ for i, location in enumerate(all_locations):
         check_button = tk.Checkbutton(text="{0}".format(message),
                                       variable = check_buttons[location][message])
         # check the old buttons that were checked previously
-        if location in old_output and message in old_output[location]:
+        if old_output != {} and location in old_output and message in old_output[location]:
             if old_output[location][message] == 1:
                 check_button.select()
         check_button.grid(column = i, row = j + 1, sticky = 'w')
     custom_text[location] = tk.Text(width = 20, height = 3)
-    if 'text' in old_output[location]:
+    if old_output != {} and 'text' in old_output[location]:
         text = old_output[location]['text']
         custom_text[location].insert(INSERT, text) # TODO: get the old custom text into the box
     custom_text[location].grid(column = i, row = j + 2)
