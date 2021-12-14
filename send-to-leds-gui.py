@@ -20,7 +20,7 @@ def save():
         output[location] = {}
         for message in all_messages:
             output[location][message] = check_buttons[location][message].get()
-            if message == "Custom message" and output[location][message] == 1:
+            if message == "Custom message":
                 text_in_box = custom_text[location].get("1.0", "end")[:-1]
                 if len(text_in_box) > 0:
                     output[location]["text"] = text_in_box
@@ -35,7 +35,7 @@ def send_button():
     messagebox.showinfo("hello", "{0}".format(output))
 
 all_messages = ['PPH', 'eComm', 'Good morning', 'Good job everybody', "Custom message"]
-all_locations = ['All Cells', 'C1 + C2', 'C4 / Cutting', 'C5', 'C8', 'C9', 'C13 + C14'] # these are in order of their led IDs
+all_locations = ['All Cells', 'C1 + C2', 'C4 / Cutting', 'C5', 'C8', 'C9', 'C13 + C14'] # TODO: fix networking to take these as well as LED IDs
 
 window = tk.Tk()
 window.protocol("WM_DELETE_WINDOW", on_closing)
@@ -58,7 +58,7 @@ for i, location in enumerate(all_locations):
                 check_button.select()
         check_button.grid(column = i, row = j + 1, sticky = 'w')
     custom_text[location] = tk.Text(width = 20, height = 3)
-    if old_output[location]['Custom message'] and 'text' in old_output[location]:
+    if 'text' in old_output[location]:
         text = old_output[location]['text']
         custom_text[location].insert(INSERT, text) # TODO: get the old custom text into the box
     custom_text[location].grid(column = i, row = j + 2)
