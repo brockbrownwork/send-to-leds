@@ -42,6 +42,7 @@ window.title("Send to LEDs")
 check_buttons = {}
 custom_text = {}
 
+# Loads up the GUI
 for i, location in enumerate(all_locations):
     led_id = i + 1
     location_label = tk.Label(text = location)
